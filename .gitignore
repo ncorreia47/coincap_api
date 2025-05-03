@@ -50,6 +50,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+*test
 
 # Translations
 *.mo
@@ -128,7 +129,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+*.env
 .venv
 env/
 venv/
@@ -172,5 +173,3 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-dev.env
-prod.env
