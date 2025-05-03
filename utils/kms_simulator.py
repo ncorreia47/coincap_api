@@ -1,17 +1,14 @@
 """
-    Uma classe para simular o comportamento de encriptação / decriptação do Key Management Service
+    Uma classe para simular o comportamento de decriptação do Key Management Service
     no GCP.
 
-    Será utilizada apenas encriptação / descriptação de base 64 bits. Não serão abordados métodos de autenticação
+    Será utilizada apenas descriptação de base 64 bits. Não serão abordados métodos de autenticação
     da service_account, key_ring e outras funcionalidades do GCP.
 """
 
 import base64
 
 class kms_simulator():
-
-    def encrypt_text():
-        pass
 
     def decrypt_text(text: str):
         
