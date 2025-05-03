@@ -2,36 +2,23 @@ import os
 import requests
 import json
 import pandas as pd
-from pathlib import Path
-from dotenv import load_dotenv
 from datetime import datetime
 from utils.kms_simulator import kms_simulator as kms
+from utils.load_environment import load_environment
+from utils.load_to_database import load_dataframe
 
 
-def load_environment(env_name: str = "dev"):
-    """
-        Realiza o carregamento do arquivo de variáveis de ambiente de acordo com o ambiente escolhido.
-        Opções disponíveis: dev e prod
-    """
-    base_dir = Path(__file__).resolve().parent.parent 
-    env_path = base_dir / "configs" / f"{env_name.lower()}.env"
-    
-    if env_path.exists():
-        load_dotenv(dotenv_path=env_path)
-        print(f"Ambiente carregado: {env_name}")
-    else:
-        raise FileNotFoundError(f"Arquivo {env_path} não encontrado.")
+def get_api_data(env_name: str, endpoint: str):
+    print(f'Carregando o ambiente: {env_name}')
+    load_environment(env_name)
 
-def get_api_data(endpoint: str):
     api_url = os.getenv("API_URL")
-    api_key_name = os.getenv('API_KEY_NAME')
     api_key_encrypted = os.getenv("API_KEY")
     num_requests = os.getenv('NUM_REQUESTS')
     max_payload_per_request = os.getenv('MAX_PAYLOAD_PER_REQUEST')
     max_results_per_request = os.getenv('MAX_RESULTS_PER_REQUEST')
 
-    print(f"Realizando a requisição com a api_key_name: {api_key_name}")
-    
+    print(f'Realizando a requisição...')
     try:
         # Descriptografa a chave
         api_key = kms.decrypt_text(api_key_encrypted)
@@ -49,19 +36,32 @@ def get_api_data(endpoint: str):
 
             # Calcula o tamanho do payload (em bytes) e divide por 2.500 (custo adicional de créditos, de acordo com a documentação da API: https://pro.coincap.io/api-docs)
             payload = round(len(json.dumps(dataset, separators=(',', ':')).encode("utf-8")) / 2500, 0)
-
+            
+            print(f'Validando o payload da requisição...')
             if int(payload) <= int(max_payload_per_request):
-                print('Inserir dados na camada raw...')
+
+                print('Payload válido! Inserindo dados na camada raw...')
                 dataframe = pd.DataFrame(dataset)
                 dataframe['updated_at'] = dthr_request
-                dataframe.to_csv(f'dataframe_request_{req}.csv', sep=';', index=False) 
 
-                print(f'Dados inseridos com sucesso na camada raw.')
+                # Normalizando nome de colunas
+                df_columns = ['id', 'rank', 'symbol', 'name', 'supply', 'max_supply', 'market_cap_usd', 'volume_usd_24hr', 'price_usd',
+                              'change_percent_24hr', 'vwap_24hr', 'explorer', 'updated_at' ]
+                dataframe.columns = df_columns
+                
+                # Normalizando urls:
+                dataframe['explorer'] = dataframe['explorer'].apply(lambda x: x[:x.rfind('/') + 1] if isinstance(x, str) and '/' in x else None)
+
+                load_dataframe(dataframe = dataframe, 
+                               context = endpoint, 
+                               env_name = env_name,
+                               schema = 'coincap_api')
             
             else:
                 return f'Payload acima do permitido: Payload enviado: {payload + 1}; payload permitido: {max_payload_per_request}'
+        
+        print('Requisição finalizada!')
     
     except requests.exceptions.RequestException as e:
-        print(f"Erro ao acessar a API: {e}")
-        return None
+        return f"Erro ao acessar a API: {e}"
 
