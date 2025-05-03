@@ -1,4 +1,3 @@
 from api_consumer import consumer
 
-consumer.load_environment('prod')
-print(consumer.get_api_data('assets'))
+consumer.get_api_data('prod', 'assets')
