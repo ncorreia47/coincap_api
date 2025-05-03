@@ -51,18 +51,18 @@ Os arquivos de configuração precisam seguir as seguintes convenções:
 As seguintes variáveis precisam ser criadas para o correto funcionamento da aplicação:
 ```bash
 # Configurações da API
-API_KEY= Chave da API 
-API_URL= URL da API
-NUM_REQUESTS= Número de requisições
-MAX_PAYLOAD_PER_REQUEST= Valor máximo do payload por requisição
-MAX_RESULTS_PER_REQUEST= Quantidade de registros por requisição
+API_KEY= 'Chave da API' 
+API_URL= 'URL da API'
+NUM_REQUESTS= 'Número de requisições'
+MAX_PAYLOAD_PER_REQUEST= 'Valor máximo do payload por requisição'
+MAX_RESULTS_PER_REQUEST= 'Quantidade de registros por requisição'
 
 # Configurações do PostgreSQL
-POSTGRESQL_USERNAME= Nome do usuário do PostgreSQL
-POSTGRESQL_PASSWORD= Senha do usuário do PostgreSQL
-POSTGRESQL_HOSTNAME= Hostname 
-POSTGRESQL_PORT= Número da porta
-POSTGRESQL_DATABASE= Nome do database (banco de dados)
+POSTGRESQL_USERNAME= 'Nome do usuário do PostgreSQL'
+POSTGRESQL_PASSWORD= 'Senha do usuário do PostgreSQL'
+POSTGRESQL_HOSTNAME= 'Hostname'
+POSTGRESQL_PORT= 'Número da porta'
+POSTGRESQL_DATABASE= 'Nome do database (banco de dados)'
 ```
 
 Obs.: Importante realizar a criptografia base64 para as variáveis sensíveis, como senhas, nomes de usuários, nomes de bancos de dados e chaves de API.
