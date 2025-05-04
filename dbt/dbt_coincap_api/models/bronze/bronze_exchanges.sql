@@ -1,6 +1,6 @@
 /*
 Com esses parâmetros de configuração, o dbt realizará uma instrução MERGE para atualizar os dados que têm a mesma unique_key (definida nesse modelo como uma chave
-composta de id, rank e updated_at).
+composta de cripto_id, cripto_rank, last_exchange_update e updated_at).
 Além disso, foi utilizada a metodologia de contracts, para validar os tipos de dados que serão persistidos e também aplicar testes unitários.
 
 A utilização de tags nos ajuda a identificar os modelos e permite que eles sejam executados atraves das tags 
@@ -33,7 +33,7 @@ with bronze_exchanges as (
         , exchange_url                                 as url_link
         , to_timestamp(cast(updated as bigint) / 1000) as last_exchange_update    -- convertido milesegundos para timestamp
         , '{{ run_started_at }}'::timestamp            as processed_at
-        , updated_at
+        , current_timestamp::timestamp                 as updated_at
     from {{ source('raw', 'raw_exchanges') }}
     -- Realiza a carga incremental com base na partição criada no Postgres
     {% if is_incremental() %}

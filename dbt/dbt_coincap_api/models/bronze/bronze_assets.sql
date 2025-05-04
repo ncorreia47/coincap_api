@@ -1,6 +1,6 @@
 /*
 Com esses parâmetros de configuração, o dbt realizará uma instrução MERGE para atualizar os dados que têm a mesma unique_key (definida nesse modelo como uma chave
-composta de id, rank e updated_at).
+composta de cripto_id, cripto_rank e updated_at).
 Além disso, foi utilizada a metodologia de contracts, para validar os tipos de dados que serão persistidos e também aplicar testes unitários.
 
 A utilização de tags nos ajuda a identificar os modelos e permite que eles sejam executados atraves das tags 
@@ -23,20 +23,20 @@ como por exemplo: apagar dados de uma partição e carregá-los novamente.
 
 with bronze_assets as (
     select
-          id                   as cripto_id
-        , rank                 as cripto_rank
-        , symbol               as cripto_symbol
-        , upper(name)          as cripto_name
-        , supply               as supply_value
-        , max_supply           as max_supply_value
-        , market_cap_usd       as max_cap_usd_value
-        , volume_usd_24hr      as volume_usd_24hr_value
-        , price_usd            as price_usd_value
+          id                                as cripto_id
+        , rank                              as cripto_rank
+        , symbol                            as cripto_symbol
+        , upper(name)                       as cripto_name
+        , supply                            as supply_value
+        , max_supply                        as max_supply_value
+        , market_cap_usd                    as max_cap_usd_value
+        , volume_usd_24hr                   as volume_usd_24hr_value
+        , price_usd                         as price_usd_value
         , change_percent_24hr
-        , vwap_24hr            as vwap_24hr_value
-        , explorer             as url_link
+        , vwap_24hr                         as vwap_24hr_value
+        , explorer                          as url_link
         , '{{ run_started_at }}'::timestamp as processed_at
-        , updated_at
+        , current_timestamp::timestamp      as updated_at
     from {{ source('raw', 'raw_assets') }}
     -- Realiza a carga incremental com base na partição criada no Postgres
     {% if is_incremental() %}
