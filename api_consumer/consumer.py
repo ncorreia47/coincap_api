@@ -6,6 +6,7 @@ from datetime import datetime
 from utils.kms_simulator import kms_simulator as kms
 from utils.load_environment import load_environment
 from utils.load_to_database import load_dataframe
+from utils.basic_data_transformation import normalize_column_names
 
 
 def get_api_data(env_name: str, endpoint: str):
@@ -45,9 +46,7 @@ def get_api_data(env_name: str, endpoint: str):
                 dataframe['updated_at'] = dthr_request
 
                 # Normalizando nome de colunas
-                df_columns = ['id', 'rank', 'symbol', 'name', 'supply', 'max_supply', 'market_cap_usd', 'volume_usd_24hr', 'price_usd',
-                              'change_percent_24hr', 'vwap_24hr', 'explorer', 'updated_at' ]
-                dataframe.columns = df_columns
+                dataframe.columns = normalize_column_names(dataframe.columns)
                 
                 # Normalizando urls:
                 dataframe['explorer'] = dataframe['explorer'].apply(lambda x: x[:x.rfind('/') + 1] if isinstance(x, str) and '/' in x else None)
