@@ -75,3 +75,42 @@ python main.py
 ```
 
 Com isso, os dados serão persistidos na camada raw no banco de dados PostgreSQL
+
+
+### Configuração do dbt
+O dbt será utilizado para realizar todas as etapas de transformação e carregamento dos dados para as camadas superiores (bronze, silver e gold).
+Para iniciar a sua utilização, precisamos executar os seguintes comandos:
+
+- Instalar o dbt-core e um dbt adapter (de acordo com o banco de dados utilizado):
+```bash
+pip install dbt-core dbt-postgres
+```
+
+Com a instalação realizada, precisamos criar o nosso projeto dentro da pasta dedicada para ele (dbt) para isolá-lo da nossa aplicação da API:
+
+- Se o caminho do seu projeto estiver em /coincap_api/api:
+```bash
+cd .. # para retornar ao nível anterior
+mkdir dbt # para criar a pasta
+cd dbt # para entrar na pasta dbt
+
+dbt init nome_do_seu_projeto # para criar o nome do seu projeto em dbt
+```
+
+Obs.: Se você não instalar o dbt adapter (postgres, bigquery entre outros bancos que vai utilizar) o projeto será inicializado com erro.
+
+- Com a inicialização bem sucedida, na criação do projeto será solicitado
+    - a seleção do database
+    - o nome do hostname
+    - a porta
+    - o nome do usuário
+    - a senha do usuário (não vai aparecer a senha no prompt)
+    - o database_name (nome do banco de dados)
+    - o nome do schema
+
+Obs.: Essas informações serão alocadas na pasta ./dbt, no arquivo profile_template.yml
+
+- Para validar a conexão, execute o comando abaixo:
+```bash
+dbt debug
+```
