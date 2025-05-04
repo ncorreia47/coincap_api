@@ -1,4 +1,4 @@
-# Case Técnico | Analytics Engineer
+# Pipeline end-to-end | Coincap API (versão 3.0)
 Pipeline de dados para consumo de dados de API com informações de criptomoedas.
 
 ## Características da API
@@ -8,7 +8,7 @@ Pipeline de dados para consumo de dados de API com informações de criptomoedas
 - A cada 2.500 bytes é cobrado um novo crédito (payload)
 - Documentação completa: https://pro.coincap.io/api-docs
 
-# Escopo do desenvolvimento do Case
+# Escopo do desenvolvimento
 
 ### Consumo dos dados via API
 - Definir quais dados serão utilizados
@@ -25,7 +25,7 @@ Pipeline de dados para consumo de dados de API com informações de criptomoedas
 - Foi utilizada a Metodologia de cargas incrementais no Powerbi, pensando em um cenário real de consumo de dados, evitando custos desnecessários de processamento dos dados e reduzindo significativamente o tempo para atualização dos dashboards
 - Criada documentação para orientar o usuário na utilização dos dados do dashboard
 
-# Instalação de Pacotes e Softwares utilizados
+# Instalação de pacotes e softwares utilizados
 
 - Configuração de ambiente virtual:
 ```bash
@@ -44,8 +44,8 @@ pip install -r requirements.txt
   - Realize os procedimentos solicitados no arquivo de instalação: diretório do arquivo, porta do banco entre outras informações
   - Importante lembrar das informações de usuário, senha, porta e hostname, pois serão utilizadas nas etapas seguintes do projeto
   - Caso tenha dificuldades para realizar a instalação, acesse o tutorial disponível em: https://www.youtube.com/watch?v=jIs0LEnpRJE&t=299s
-  
-# Utilização da Aplicação
+
+# Utilização da aplicação
 
 ### Configuração de variáveis
 Os arquivos de configuração precisam seguir as seguintes convenções:
