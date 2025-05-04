@@ -23,3 +23,10 @@ Em relação as tabelas:
 
 - assets: No contexto de criptomoedas, assets são os ativos digitais negociados nas exchanges.
 - exchanges: As exchanges são as plataformas onde os ativos digitais são comprados, vendidos ou trocados.
+
+
+### Como acessar o dashboard?
+
+O dashboard pode ser visualizado:
+- Baixando o arquivo .pbix disponível nesse diretório; ou
+- Através do link: https://app.powerbi.com/view?r=eyJrIjoiZDY4ODlkNmUtMTk3NS00YTY4LThlNDktOWQ2YWQyODBkMjMzIiwidCI6ImIwZTczMzVmLWZkMWYtNDZhZC05OGM3LTU1ZTZlNGUyMjJlYSJ9
