@@ -1,6 +1,6 @@
 # Dashboard para acompanhamento das principais criptomoedas comercializadas
 
-O dashboard foi desenvolvido com base nos indicadores disponibilizados no site oficial da API: https://coincap.io/, com o objetivo de demostrar o comportamento das criptomoedas ao longo do tempo.
+O dashboard foi desenvolvido com base nos indicadores disponibilizados no site oficial da API: https://coincap.io/, com o objetivo de demonstrar o comportamento das criptomoedas ao longo do tempo.
 
 As seguintes tabelas foram utilizadas para a construção das métricas e visualizações:
 

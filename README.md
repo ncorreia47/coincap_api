@@ -16,13 +16,13 @@ Pipeline de dados para consumo de dados de API com informações de criptomoedas
 
 ### Armazenamento e transformação de dados
 - Utilizar a arquitetura medalhão: raw (dados brutos), bronze (dados tratados), silver (dados modelados para entidade de negócio) e gold (cubos e métricas)
-- Os dados serão persistindos em um banco PostgreSQL
+- Os dados serão persistidos em um banco PostgreSQL
 - O tratamento e as transformações de dados serão realizadas com o dbt-core, utilizando SQL
 
 ### Visualização dos dados
 - O dashboard será desenvolvido em PowerBI
-- O objetivo do dashboards será apresentar os valores comercializados das principais criptomoedas e suas variações ao longo do tempo
-- Foi utilizada a Metodologia de cargas incrementais no Powerbi, pensando em um cenário real de consumo de dados, evitando custos desnecessários de processamento dos dados e reduzindo significativamente o tempo para atualização dos dashboards
+- O objetivo do dashboard será apresentar os valores comercializados das principais criptomoedas e suas variações ao longo do tempo
+- Foi utilizada a Metodologia de cargas incrementais no Powerbi, pensando em um cenário real de consumo de dados, evitando custos desnecessários de processamento dos dados e reduzindo significativamente o tempo para atualização do dashboard
 - Criada documentação para orientar o usuário na utilização dos dados do dashboard
 
 # Instalação de pacotes e softwares utilizados
