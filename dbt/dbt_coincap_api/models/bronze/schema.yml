@@ -1,0 +1,82 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: coincap_api
+    tables:
+      - name: raw_assets
+      - name: raw_exchanges
+
+models:
+  - name: bronze_assets
+    description: Tabela de assets
+    meta:
+      owner: ncorreia
+      layer: bronze
+      domain: assets
+    config:
+      contract:
+        enforced: true
+        on_schema_change: append_new_columns
+    columns:
+      - name: cripto_id
+        description: Identificação única da criptomoeda
+        data_type: string
+        tests:
+          - not_null
+
+      - name: cripto_rank
+        description: Rank da criptomoeda
+        data_type: integer
+        tests:
+          - not_null
+
+      - name: cripto_symbol
+        description: Simbolo da criptomoeda
+        data_type: string
+        tests:
+          - not_null
+      
+      - name: cripto_name
+        description: Nome da criptomoeda
+        data_type: string
+
+      - name: supply_value
+        description: Valor de supply
+        data_type: decimal
+      
+      - name: max_supply_value
+        description: Valor máximo de supply
+        data_type: decimal
+      
+      - name: max_cap_usd_value
+        description: Valor máximo de cap_usd
+        data_type: decimal
+      
+      - name: volume_usd_24hr_value
+        description: Valor de volume_usd_24hr
+        data_type: decimal
+
+      - name: price_usd_value
+        description: Valor de price_usd
+        data_type: decimal
+      
+      - name: change_percent_24hr
+        description: Valor de change_percent_24hr
+        data_type: decimal
+      
+      - name: vwap_24hr_value
+        description: Valor de vwap_24hr
+        data_type: decimal
+      
+      - name: url_link
+        description: URL da página da criptomoeda
+        data_type: string
+      
+      - name: processed_at
+        description: Timestamp do processamento do model no dbt
+        data_type: timestamp
+
+      - name: updated_at
+        description: Timestamp da atualização do registro
+        data_type: timestamp
