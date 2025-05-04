@@ -106,7 +106,6 @@ models:
         description: Valor de percent_total_volume
         data_type: decimal
       
-      
       - name: volume_usd_value
         description: Valor de volume_usd_value
         data_type: decimal
