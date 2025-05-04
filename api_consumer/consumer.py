@@ -47,9 +47,6 @@ def get_api_data(env_name: str, endpoint: str):
 
                 # Normalizando nome de colunas
                 dataframe.columns = normalize_column_names(dataframe.columns)
-                
-                # Normalizando urls:
-                dataframe['explorer'] = dataframe['explorer'].apply(lambda x: x[:x.rfind('/') + 1] if isinstance(x, str) and '/' in x else None)
 
                 load_dataframe(dataframe = dataframe, 
                                context = endpoint, 
