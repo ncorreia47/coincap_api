@@ -21,11 +21,11 @@ Pipeline de dados para consumo de dados de API com informações de criptomoedas
 
 ### Visualização dos dados
 - O dashboard será desenvolvido em PowerBI
-- Quais respostas vamos tentar responder?
-- Metodologia utilizada no carregamento e atualização dos dados
+- O objetivo do dashboards será apresentar os valores comercializados das principais criptomoedas e suas variações ao longo do tempo
+- Foi utilizada a Metodologia de cargas incrementais no Powerbi, pensando em um cenário real de consumo de dados, evitando custos desnecessários de processamento dos dados e reduzindo significativamente o tempo para atualização dos dashboards
+- Criada documentação para orientar o usuário na utilização dos dados do dashboard
 
-
-# Instalação de Pacotes
+# Instalação de Pacotes e Softwares utilizados
 
 - Configuração de ambiente virtual:
 ```bash
@@ -39,7 +39,12 @@ nome_da_venv/scripts/activate
 ```bash
 pip install -r requirements.txt
 ```
-
+- Configuração do banco Postgres (latest version):
+  - Realizar o download da versão no link: https://www.postgresql.org/download/
+  - Realize os procedimentos solicitados no arquivo de instalação: diretório do arquivo, porta do banco entre outras informações
+  - Importante lembrar das informações de usuário, senha, porta e hostname, pois serão utilizadas nas etapas seguintes do projeto
+  - Caso tenha dificuldades para realizar a instalação, acesse o tutorial disponível em: https://www.youtube.com/watch?v=jIs0LEnpRJE&t=299s
+  
 # Utilização da Aplicação
 
 ### Configuração de variáveis
@@ -74,14 +79,14 @@ Para realizar a extração dos dados da API e persisti-los em um banco de dados 
 python main.py
 ```
 
-Com isso, os dados serão persistidos na camada raw no banco de dados PostgreSQL
+Com isso, os dados serão persistidos na camada raw no banco de dados PostgreSQL.
 
 
 ### Configuração do dbt
 O dbt será utilizado para realizar todas as etapas de transformação e carregamento dos dados para as camadas superiores (bronze, silver e gold).
 Para iniciar a sua utilização, precisamos executar os seguintes comandos:
 
-- Instalar o dbt-core e um dbt adapter (de acordo com o banco de dados utilizado):
+- Instalar o dbt-core e um dbt adapter (de acordo com o banco de dados utilizado) caso não tenha instalado via requirements.txt
 ```bash
 pip install dbt-core dbt-postgres
 ```
