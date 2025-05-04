@@ -1,0 +1,180 @@
+version: 2
+
+models:
+  - name: gold_assets
+    description: Tabela de assets
+    meta:
+      owner: ncorreia
+      layer: gold
+      domain: assets
+    config:
+      contract:
+        enforced: true
+        on_schema_change: append_new_columns
+    columns:
+      - name: cripto_id
+        description: Identificação única da criptomoeda
+        data_type: string
+        tests:
+          - not_null
+
+      - name: cripto_rank
+        description: Rank da criptomoeda
+        data_type: integer
+        tests:
+          - not_null
+
+      - name: cripto_symbol
+        description: Simbolo da criptomoeda
+        data_type: string
+        tests:
+          - not_null
+      
+      - name: cripto_name
+        description: Nome da criptomoeda
+        data_type: string
+
+      - name: supply_value
+        description: Valor de supply
+        data_type: decimal
+      
+      - name: max_supply_value
+        description: Valor máximo de supply
+        data_type: decimal
+      
+      - name: max_cap_usd_value
+        description: Valor máximo de cap_usd
+        data_type: decimal
+      
+      - name: volume_usd_24hr_value
+        description: Valor de volume_usd_24hr
+        data_type: decimal
+
+      - name: price_usd_value
+        description: Valor de price_usd
+        data_type: decimal
+      
+      - name: change_percent_24hr
+        description: Valor de change_percent_24hr
+        data_type: decimal
+      
+      - name: vwap_24hr_value
+        description: Valor de vwap_24hr
+        data_type: decimal
+      
+      - name: supply_value_mean
+        description: Valor médio de supply
+        data_type: decimal
+      
+      - name: max_supply_value_mean
+        description: Valor médio dos valores máximos de supply
+        data_type: decimal
+      
+      - name: max_cap_usd_value_mean
+        description: Valor médio dos valores máximos de cap_usd
+        data_type: decimal
+      
+      - name: volume_usd_24hr_value_mean
+        description: Valor médio de volume_usd_24hr
+        data_type: decimal
+
+      - name: price_usd_value_mean
+        description: Valor médio de price_usd
+        data_type: decimal
+      
+      - name: change_percent_24hr_mean
+        description: Valor médio de change_percent_24hr
+        data_type: decimal
+      
+      - name: vwap_24hr_value_mean
+        description: Valor médio de vwap_24hr
+        data_type: decimal
+      
+      - name: url_link
+        description: URL da página da criptomoeda
+        data_type: string
+      
+      - name: processed_at
+        description: Timestamp do processamento do model no dbt
+        data_type: timestamp
+
+      - name: updated_at
+        description: Timestamp da atualização do registro
+        data_type: timestamp
+  
+
+  - name: gold_exchanges
+    description: Tabela de exchanges
+    meta:
+      owner: ncorreia
+      layer: gold
+      domain: exchanges
+    config:
+      contract:
+        enforced: true
+        on_schema_change: append_new_columns
+    columns:
+      - name: cripto_id
+        description: Identificação única da criptomoeda
+        data_type: string
+        tests:
+          - not_null
+      
+      - name: cripto_name
+        description: Nome da criptomoeda
+        data_type: string
+
+      - name: cripto_rank
+        description: Rank da criptomoeda
+        data_type: integer
+        tests:
+          - not_null
+
+      - name: percent_total_volume
+        description: Valor de percent_total_volume
+        data_type: decimal
+      
+      - name: volume_usd_value
+        description: Valor de volume_usd_value
+        data_type: decimal
+      
+      - name: trading_pairs_quantity
+        description: Quantidade de trading_pairs
+        data_type: integer
+      
+      - name: percent_total_volume_mean
+        description: Valor médio de percent_total_volume
+        data_type: decimal
+      
+      - name: volume_usd_value_mean
+        description: Valor médio de volume_usd_value
+        data_type: decimal
+      
+      - name: trading_pairs_quantity_mean
+        description: Quantidade média de trading_pairs
+        data_type: decimal
+      
+      - name: fg_socket
+        description: Flag true ou false de socket
+        data_type: string
+        tests:
+          - accepted_values:
+              values: ['true', 'false']
+              quote: true
+      
+      - name: url_link
+        description: URL da página da criptomoeda
+        data_type: string
+      
+      - name: last_exchange_update
+        description: Última atualização do exchange na base da API
+        data_type: timestamptz
+      
+      - name: processed_at
+        description: Timestamp do processamento do model no dbt
+        data_type: timestamp
+
+      - name: updated_at
+        description: Timestamp da atualização do registro
+        data_type: timestamp
+  
