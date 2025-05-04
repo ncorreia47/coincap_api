@@ -49,6 +49,23 @@ Onde:
 
 ### Gold
 
+A camada gold foi desenvolvida seguindo a estrutura abaixo:
+
+```bash
+models/
+└── gold/
+    ├── gold_assets.sql
+    ├── gold_exchanges.sql
+    └── schema.yml
+
+```
+
+Onde:
+- gold_assets: representa o código sql para construir a tabela gold_assets no banco de dados, aplicando agrupamentos dos dados com base na última atualização e calculando a média de valores ao longo do tempo.
+
+- gold_exchanges: representa o código sql para construir a tabela gold_exchanges no banco de dados, aplicando agrupamentos dos dados com base na última atualização e calculando a média de valores ao longo do tempo.
+
+- schema.yml: arquivo de configuração onde definimos nossos models, informando metadados (como tags, proprietário, contexto entre outros) e os tipos de dados de cada coluna, assim como seus testes (unique_key, not_null e testes customizados).
 
 ## Exemplos de execução
 Executar models da camada bronze que tem em seu configs (parte inicial da construção de um model) ou no arquivo schema.yml a tag <strong style="color:#6c757d">bronze</strong>:
