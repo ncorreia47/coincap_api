@@ -1,7 +1,7 @@
-from get import consumer
+from get.consumer import Consumer
 
-# Consumo de dados de assets
-consumer.get_api_data('prod', 'assets')
+endpoints = ['assets', 'exchanges'] # Lista de endpoints para consumir os dados.
+env_name = 'prod' # variáveis de ambiente carregadas
 
-# Consumo de dados de exchanges
-consumer.get_api_data('prod', 'exchanges')
+for endpoint in endpoints:
+    Consumer.get_api_data(env_name, endpoint)
