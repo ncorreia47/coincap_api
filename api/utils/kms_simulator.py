@@ -10,6 +10,7 @@ class kms_simulator():
     da service_account, key_ring e outras funcionalidades do GCP.
     """
 
+    @staticmethod
     def decrypt_text(text: str):
         
         # Decodifica para bytes

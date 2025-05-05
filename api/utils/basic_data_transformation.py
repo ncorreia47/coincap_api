@@ -6,6 +6,7 @@ class NormalizeData():
     Classe responsável por normalização de dados simples.
     """
     
+    @staticmethod
     def normalize_column_names(columns):
         """
         Essa função realiza a normalização dos nomes das colunas de forma dinâmica, independentemente do dataframe repassado.
